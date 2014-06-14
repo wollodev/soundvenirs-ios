@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6381F4B193CFD0600A24CDB"
-               BuildableName = "Soundvenir.app"
+               BuildableName = "Soundvenirs.app"
                BlueprintName = "Soundvenirs"
                ReferencedContainer = "container:Soundvenirs.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6381F6C193CFD0600A24CDB"
-               BuildableName = "SoundvenirTests.xctest"
+               BuildableName = "SoundvenirsTests.xctest"
                BlueprintName = "SoundvenirsTests"
                ReferencedContainer = "container:Soundvenirs.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6381F4B193CFD0600A24CDB"
-            BuildableName = "Soundvenir.app"
+            BuildableName = "Soundvenirs.app"
             BlueprintName = "Soundvenirs"
             ReferencedContainer = "container:Soundvenirs.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6381F4B193CFD0600A24CDB"
-            BuildableName = "Soundvenir.app"
+            BuildableName = "Soundvenirs.app"
             BlueprintName = "Soundvenirs"
             ReferencedContainer = "container:Soundvenirs.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6381F4B193CFD0600A24CDB"
-            BuildableName = "Soundvenir.app"
+            BuildableName = "Soundvenirs.app"
             BlueprintName = "Soundvenirs"
             ReferencedContainer = "container:Soundvenirs.xcodeproj">
          </BuildableReference>
