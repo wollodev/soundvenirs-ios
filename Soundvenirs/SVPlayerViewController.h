@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SVCollectedSong.h"
 
 @interface SVPlayerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) SVCollectedSong *currentSongLocation;
 
 @end

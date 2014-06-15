@@ -9,6 +9,7 @@
 #import "SVMapViewController.h"
 #import <MapKit/MapKit.h>
 #import "SVSoundLocation.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface SVMapViewController ()
 
@@ -27,7 +28,9 @@
     
     self.locationFound = false;
 
-    self.soundLocations = [SVSoundLocation soundLocationDump];
+    [self requestSoundLocations];
+    
+    
     self.view.backgroundColor = [UIColor clearColor];
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
@@ -38,13 +41,42 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    for (SVSoundLocation *soundLocation in self.soundLocations) {
-        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        annotation.coordinate = soundLocation.location;
-        annotation.title = soundLocation.title;
+//    for (SVSoundLocation *soundLocation in self.soundLocations) {
+//        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+//        annotation.coordinate = soundLocation.location;
+//        annotation.title = soundLocation.title;
+//        
+//        [self.mapView addAnnotation:annotation];
+//    }
+}
+
+- (void)requestSoundLocations {
+    NSMutableArray *soundLocations = [[NSMutableArray alloc] init];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://www.soundvenirs.com/api/soundLocations" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        for (NSDictionary *soundLocationDict in responseObject) {
+            NSDictionary *locationDict = soundLocationDict[@"location"];
+            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
+            
+            SVSoundLocation *newSoundLocation =[SVSoundLocation soundLocation:soundLocationDict[@"uuid"] andTitle:soundLocationDict[@"title"] andLocation:location];
+            
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            annotation.coordinate = newSoundLocation.location;
+            annotation.title = newSoundLocation.title;
+            
+            [self.mapView addAnnotation:annotation];
+            
+            [soundLocations addObject:newSoundLocation];
+        }
+
+        self.soundLocations = soundLocations;
         
-        [self.mapView addAnnotation:annotation];
-    }
+        
+    
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"ERROR: %@", error);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning

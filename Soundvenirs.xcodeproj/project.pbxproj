@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B14730CF7DA477F91C22931 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B9A6BE14E74996B77D3D22 /* libPods.a */; };
+		D6114CD4194E128C006DAC73 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D6114CD3194E128C006DAC73 /* UIViewController+BackButtonHandler.m */; };
 		D6381F50193CFD0600A24CDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F4F193CFD0600A24CDB /* Foundation.framework */; };
 		D6381F52193CFD0600A24CDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F51193CFD0600A24CDB /* CoreGraphics.framework */; };
 		D6381F54193CFD0600A24CDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F53193CFD0600A24CDB /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		0168599201F54B83A422139F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D6114CD2194E128C006DAC73 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		D6114CD3194E128C006DAC73 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		D6381F4C193CFD0600A24CDB /* Soundvenirs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soundvenirs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6381F4F193CFD0600A24CDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6381F51193CFD0600A24CDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -201,6 +204,8 @@
 		D6381F56193CFD0600A24CDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D6114CD2194E128C006DAC73 /* UIViewController+BackButtonHandler.h */,
+				D6114CD3194E128C006DAC73 /* UIViewController+BackButtonHandler.m */,
 				D6114CC9194CE729006DAC73 /* Images */,
 				D6381F57193CFD0600A24CDB /* Soundvenirs-Info.plist */,
 				D6381F58193CFD0600A24CDB /* InfoPlist.strings */,
@@ -397,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6114CD4194E128C006DAC73 /* UIViewController+BackButtonHandler.m in Sources */,
 				D6381F66193CFD0600A24CDB /* SVMenuViewController.m in Sources */,
 				D6381F5C193CFD0600A24CDB /* main.m in Sources */,
 				D6495B231947640D00897DDE /* SVSoundLocation.m in Sources */,

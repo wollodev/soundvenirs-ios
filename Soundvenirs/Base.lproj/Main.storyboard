@@ -93,6 +93,7 @@
                     <navigationItem key="navigationItem" id="Inc-oO-r66"/>
                     <connections>
                         <outlet property="scannerView" destination="Iky-Fy-FLL" id="3tI-Yk-E7a"/>
+                        <segue destination="xCb-2T-McE" kind="custom" identifier="PushToPlayer" customClass="PushNoAnimationSegue" id="fCm-n0-G5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjL-eW-59P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,7 +129,7 @@
                                                     <rect key="frame" x="10" y="10" width="300" height="56"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist - Song" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-uA-pW2">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist - Song" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5N-uA-pW2">
                                                             <rect key="frame" x="13" y="0.0" width="282" height="56"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -154,6 +155,9 @@
                                         <state key="normal" image="play_button.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="play:" destination="xCb-2T-McE" eventType="touchUpInside" id="GoU-PN-Six"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBT-L6-V6d">
                                         <rect key="frame" x="169" y="9" width="77" height="77"/>
@@ -161,6 +165,9 @@
                                         <state key="normal" image="stop_button.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="stop:" destination="xCb-2T-McE" eventType="touchUpInside" id="s0U-2R-Gra"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -260,5 +267,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="YpL-8F-qB6"/>
+        <segue reference="fCm-n0-G5w"/>
     </inferredMetricsTieBreakers>
 </document>

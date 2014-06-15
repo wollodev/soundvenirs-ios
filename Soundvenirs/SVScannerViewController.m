@@ -7,6 +7,12 @@
 //
 
 #import "SVScannerViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import <MapKit/MapKit.h>
+#import "SVCollectedSong.h"
+#import "SVAppDelegate.h"
+#import "SVPlayerViewController.h"
+#import "UIViewController+BackButtonHandler.h"
 
 @interface SVScannerViewController ()
 
@@ -16,6 +22,7 @@
 @property (strong, nonatomic) AVCaptureSession* session;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer* preview;
 @property (weak, nonatomic) IBOutlet UIView *scannerView;
+@property (strong, nonatomic) SVCollectedSong *loadedSong;
 
 @end
 
@@ -49,9 +56,13 @@
 {
     [super viewDidLoad];
     
-//    if([self isCameraAvailable]) {
-//        [self setupScanner];
-//    }
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_button.png"];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back_button.png"];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.15 green:0.32 blue:0.46 alpha:0.8];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,9 +80,59 @@
     }
 }
 
+// qr-code scanned
 - (void) scanViewController:(SVScannerViewController *) aCtler didSuccessfullyScan:(NSString *) aScannedValue {
-    NSLog(aScannedValue);
+    
+    // TODO: check if qr-code a sound-location (compare location, check UDID)
+    
     [self stopScanning];
+    
+    // www.soundvenirs.com/api/sounds/:uuid
+    
+    NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", aScannedValue];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:soundUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *locationDict = responseObject[@"location"];
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
+        
+        SVCollectedSong *collectedSong = [SVCollectedSong collectedSong:responseObject[@"uuid"] andTitle:responseObject[@"title"] andLocation:location songUrl:responseObject[@"mp3url"]];
+        
+        SVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        
+        BOOL isDuplicated = false;
+        
+        if ([appDelegate.collectedSongs count] > 0) {
+            for (SVCollectedSong *tmpSong in appDelegate.collectedSongs) {
+                if ([tmpSong.uuid isEqual:collectedSong.uuid]) {
+                    isDuplicated = true;
+                    break;
+                }
+            }
+        }
+        
+
+        
+        if (!isDuplicated) {
+            [appDelegate.collectedSongs addObject:collectedSong];
+        }
+        
+        self.loadedSong = collectedSong;
+        
+        [self performSegueWithIdentifier:@"PushToPlayer" sender:self];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SVPlayerViewController *playerViewController = [segue destinationViewController];
+    playerViewController.currentSongLocation = self.loadedSong;
 }
 
 #pragma mark -

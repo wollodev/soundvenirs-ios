@@ -7,11 +7,14 @@
 //
 
 #import "SVPlayerViewController.h"
+#import "SVAppDelegate.h"
+#import <AFSoundManager/AFSoundManager.h>
 
 @interface SVPlayerViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *fixedTableFooterView;
+@property (strong, nonatomic) NSArray *collectedSongs;
 
 @end
 
@@ -27,7 +30,25 @@
     [self.tableView setDelegate:self];
     
     self.tableView.tableHeaderView = nil;
+    
+    SVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.collectedSongs = [NSArray arrayWithArray:appDelegate.collectedSongs];
+    
+    if (self.currentSongLocation) {
+        [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:@"http://users.skynet.be/fa046054/home/P22/track06.mp3" andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
+            
+        }];
+    }
+    
 }
+
+-(BOOL) navigationShouldPopOnBackButton {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    return NO; // Process 'Back' button click and Pop view controler
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -45,66 +66,33 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 9;
+    return [self.collectedSongs count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
  
-    // Configure the cell...
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:11];
+    
+    SVCollectedSong *collectedSong = [self.collectedSongs objectAtIndex:indexPath.row];
+    
+    titleLabel.text = collectedSong.title;
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SVCollectedSong *collectedSong = [self.collectedSongs objectAtIndex:indexPath.row];
+    
+    [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:@"http://users.skynet.be/fa046054/home/P22/track06.mp3" andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
+        
+    }];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (IBAction)play:(id)sender {
+    [[AFSoundManager sharedManager] resume];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (IBAction)stop:(id)sender {
+    [[AFSoundManager sharedManager] pause];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

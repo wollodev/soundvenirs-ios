@@ -11,10 +11,11 @@
 
 @interface SVCollectedSong : NSObject
 
+@property NSNumber *uuid;
 @property NSString *title;
 @property CLLocationCoordinate2D location;
-@property NSURL *songUrl;
+@property NSString *songUrl;
 
-+ (SVCollectedSong *)collectedSong:(NSString *)title andLocation:(CLLocationCoordinate2D)location songUrl:(NSURL *)songUrl;
++ (SVCollectedSong *)collectedSong:(NSNumber *)uuid andTitle:(NSString *)title andLocation:(CLLocationCoordinate2D)location songUrl:(NSString *)songUrl;
 
 @end

@@ -10,10 +10,11 @@
 
 @implementation SVCollectedSong
 
-+ (SVCollectedSong *)collectedSong:(NSString *)title andLocation:(CLLocationCoordinate2D)location songUrl:(NSURL *)songUrl {
++ (SVCollectedSong *)collectedSong:(NSNumber *)uuid andTitle:(NSString *)title andLocation:(CLLocationCoordinate2D)location songUrl:(NSString *)songUrl {
     
     SVCollectedSong *collectedSong = [[SVCollectedSong alloc] init];
     
+    collectedSong.uuid = uuid;
     collectedSong.title = title;
     collectedSong.location = location;
     collectedSong.songUrl = songUrl;
