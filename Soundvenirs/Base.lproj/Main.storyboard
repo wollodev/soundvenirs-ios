@@ -53,7 +53,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="T9T-ZK-NI2" kind="custom" customClass="PushNoAnimationSegue" id="rpr-3f-y9m"/>
+                                    <segue destination="XD0-1e-7F8" kind="custom" customClass="PushNoAnimationSegue" id="PRr-Hv-dA8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -249,6 +249,40 @@
             </objects>
             <point key="canvasLocation" x="145" y="133"/>
         </scene>
+        <!--Location Scanner View Controller-->
+        <scene sceneID="O6d-S6-TSM">
+            <objects>
+                <viewController id="XD0-1e-7F8" customClass="SVLocationScannerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g00-rl-qjt"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Cz-W2-cPl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0ue-RU-nSa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dr-XM-kf3">
+                                <rect key="frame" x="0.0" y="65" width="320" height="319"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan_button_s.png" translatesAutoresizingMaskIntoConstraints="NO" id="5nl-wf-rlw">
+                                <rect key="frame" x="60" y="127" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fm2-ti-Qgq"/>
+                    <connections>
+                        <outlet property="scannerView" destination="9dr-XM-kf3" id="q0Y-0v-NYn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="soz-F9-1UH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1134" y="855"/>
+        </scene>
     </scenes>
     <resources>
         <image name="map_button.png" width="150" height="150"/>
@@ -266,7 +300,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YpL-8F-qB6"/>
-        <segue reference="fCm-n0-G5w"/>
+        <segue reference="Dce-io-hyJ"/>
+        <segue reference="fCP-uS-SZL"/>
     </inferredMetricsTieBreakers>
 </document>

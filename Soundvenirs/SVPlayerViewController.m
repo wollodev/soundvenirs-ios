@@ -31,11 +31,11 @@
     
     self.tableView.tableHeaderView = nil;
     
-    SVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    SVAppDelegate *appDelegate = (SVAppDelegate *)[UIApplication sharedApplication].delegate;
     self.collectedSongs = [NSArray arrayWithArray:appDelegate.collectedSongs];
     
     if (self.currentSongLocation) {
-        [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:@"http://users.skynet.be/fa046054/home/P22/track06.mp3" andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
+        [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:self.currentSongLocation.songUrl andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
             
         }];
     }
@@ -85,7 +85,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SVCollectedSong *collectedSong = [self.collectedSongs objectAtIndex:indexPath.row];
     
-    [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:@"http://users.skynet.be/fa046054/home/P22/track06.mp3" andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
+    [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:collectedSong.songUrl andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
         
     }];
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 360degrees. All rights reserved.
 //
 
-#import "SVScannerViewController.h"
+#import "SVLocationScannerViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MapKit/MapKit.h>
 #import "SVCollectedSong.h"
@@ -14,7 +14,7 @@
 #import "SVPlayerViewController.h"
 #import "UIViewController+BackButtonHandler.h"
 
-@interface SVScannerViewController ()
+@interface SVLocationScannerViewController ()
 
 @property (strong, nonatomic) AVCaptureDevice* device;
 @property (strong, nonatomic) AVCaptureDeviceInput* input;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation SVScannerViewController
+@implementation SVLocationScannerViewController
 
 - (void)viewWillAppear:(BOOL)animated;
 {
@@ -79,7 +79,7 @@
 }
 
 // qr-code scanned
-- (void) scanViewController:(SVScannerViewController *) aCtler didSuccessfullyScan:(NSString *) aScannedValue {
+- (void) scanViewController:(SVLocationScannerViewController *) aCtler didSuccessfullyScan:(NSString *) aScannedValue {
     
     // TODO: check if qr-code a sound-location (compare location, check UDID)
     
@@ -89,41 +89,42 @@
     
     NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", aScannedValue];
 
+    CLLocation *ownLocation = ((SVAppDelegate *)[UIApplication sharedApplication].delegate).ownLocation;
+    NSDictionary *params = @{@"lat":[NSNumber numberWithDouble:ownLocation.coordinate.latitude], @"long":[NSNumber numberWithDouble:ownLocation.coordinate.longitude]};
+    
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:soundUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [manager POST:soundUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *locationDict = responseObject[@"location"];
-        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
+        NSNumber *status = responseObject[@"status"] ;
         
-        SVCollectedSong *collectedSong = [SVCollectedSong collectedSong:responseObject[@"uuid"] andTitle:responseObject[@"title"] andLocation:location songUrl:responseObject[@"mp3url"]];
-        
-        SVAppDelegate *appDelegate = (SVAppDelegate *)[UIApplication sharedApplication].delegate;
-        
-        BOOL isDuplicated = false;
-        
-        if ([appDelegate.collectedSongs count] > 0) {
-            for (SVCollectedSong *tmpSong in appDelegate.collectedSongs) {
-                if ([tmpSong.uuid isEqual:collectedSong.uuid]) {
-                    isDuplicated = true;
-                    break;
-                }
-            }
+        if (status.boolValue) {
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"You done it."
+                                                             message:@"Location is set!"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles: nil];
+            [alert show];
+        } else {
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"GO HOME!"
+                                                             message:@"Location is already pinned."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"BAMMMS"
+                                                   otherButtonTitles: nil];
+            [alert show];
         }
-        
-
-        
-        if (!isDuplicated) {
-            [appDelegate.collectedSongs addObject:collectedSong];
-        }
-        
-        self.loadedSong = collectedSong;
-        
-        [self performSegueWithIdentifier:@"PushToPlayer" sender:self];
-        
+        [self stopScanning];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(error.description);
     }];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

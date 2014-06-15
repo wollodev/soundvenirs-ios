@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface SVAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SVAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *collectedSongs;
+@property (strong, nonatomic) CLLocation *ownLocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

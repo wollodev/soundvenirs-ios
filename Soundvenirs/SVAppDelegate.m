@@ -15,9 +15,22 @@
     self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.collectedSongs = [NSMutableArray array];
     
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    //Here you set the Distance Filter that you need
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    // Here you set the Accuracy
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [self.locationManager startUpdatingLocation];
+    
     return YES;
 }
-							
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.ownLocation = [locations lastObject];
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
