@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSArray *soundLocations;
+@property BOOL locationFound;
 
 @end
 
@@ -23,16 +24,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.locationFound = false;
 
     self.soundLocations = [SVSoundLocation soundLocationDump];
     self.view.backgroundColor = [UIColor clearColor];
     
-    self.mapView.hidden = YES;
-    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_button.png"];
     self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back_button.png"];
-
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.15 green:0.32 blue:0.46 alpha:0.8];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -54,12 +56,15 @@
 # pragma mark - Map
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    if (self.locationFound) {
+        return;
+    }
     MKCoordinateRegion mapRegion;
     mapRegion.center = mapView.userLocation.coordinate;
     mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
     [mapView setRegion:mapRegion animated: NO];
     
-    self.mapView.hidden = NO;
+    self.locationFound = true;
 }
 
 //- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation

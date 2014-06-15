@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 360degrees. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -17,5 +18,7 @@
 + (SVSoundLocation *)soundLocation:(NSString *)title andLocation:(CLLocationCoordinate2D)location;
 
 + (NSArray *)soundLocationDump;
+
++ (NSArray *)requestAllSoundLocations;
 
 @end

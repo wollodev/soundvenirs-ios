@@ -130,11 +130,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D6114CC9194CE729006DAC73 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D64A0386194CD36D00A79D0C /* stop_button@2x.png */,
+				D64A0381194CC5BB00A79D0C /* scan_button_filled.png */,
+				D64A037F194CC4C400A79D0C /* scan_button_s.png */,
+				D64A0375194CB86E00A79D0C /* pin_button@2x.png */,
+				D64A0376194CB86E00A79D0C /* player_button@2x.png */,
+				D64A0370194C98BE00A79D0C /* scan_button@2x.png */,
+				D64A036E194C8CD500A79D0C /* map_button@2x.png */,
+				D64A036C194C81C900A79D0C /* back_button@2x.png */,
+				D64A0385194CD36D00A79D0C /* play_button@2x.png */,
+				D64A0369194C7D9A00A79D0C /* background@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		D6381F43193CFD0600A24CDB = {
 			isa = PBXGroup;
 			children = (
-				D6381F55193CFD0600A24CDB /* Soundvenir */,
-				D6381F74193CFD0600A24CDB /* SoundvenirTests */,
+				D6381F55193CFD0600A24CDB /* Soundvenirs */,
+				D6381F74193CFD0600A24CDB /* SoundvenirsTests */,
 				D6381F4E193CFD0600A24CDB /* Frameworks */,
 				D6381F4D193CFD0600A24CDB /* Products */,
 				0168599201F54B83A422139F /* Pods.xcconfig */,
@@ -165,7 +182,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D6381F55193CFD0600A24CDB /* Soundvenir */ = {
+		D6381F55193CFD0600A24CDB /* Soundvenirs */ = {
 			isa = PBXGroup;
 			children = (
 				D64A036B194C7E7800A79D0C /* Controller */,
@@ -178,23 +195,13 @@
 				D64A0372194CB3DC00A79D0C /* PushNoAnimationSegue.h */,
 				D64A0373194CB3DC00A79D0C /* PushNoAnimationSegue.m */,
 			);
-			name = Soundvenir;
 			path = Soundvenirs;
 			sourceTree = "<group>";
 		};
 		D6381F56193CFD0600A24CDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D64A0385194CD36D00A79D0C /* play_button@2x.png */,
-				D64A0386194CD36D00A79D0C /* stop_button@2x.png */,
-				D64A0381194CC5BB00A79D0C /* scan_button_filled.png */,
-				D64A037F194CC4C400A79D0C /* scan_button_s.png */,
-				D64A0375194CB86E00A79D0C /* pin_button@2x.png */,
-				D64A0376194CB86E00A79D0C /* player_button@2x.png */,
-				D64A0370194C98BE00A79D0C /* scan_button@2x.png */,
-				D64A036E194C8CD500A79D0C /* map_button@2x.png */,
-				D64A036C194C81C900A79D0C /* back_button@2x.png */,
-				D64A0369194C7D9A00A79D0C /* background@2x.png */,
+				D6114CC9194CE729006DAC73 /* Images */,
 				D6381F57193CFD0600A24CDB /* Soundvenirs-Info.plist */,
 				D6381F58193CFD0600A24CDB /* InfoPlist.strings */,
 				D6381F5B193CFD0600A24CDB /* main.m */,
@@ -203,13 +210,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D6381F74193CFD0600A24CDB /* SoundvenirTests */ = {
+		D6381F74193CFD0600A24CDB /* SoundvenirsTests */ = {
 			isa = PBXGroup;
 			children = (
 				D6381F7A193CFD0600A24CDB /* SoundvenirTests.m */,
 				D6381F75193CFD0600A24CDB /* Supporting Files */,
 			);
-			name = SoundvenirTests;
 			path = SoundvenirsTests;
 			sourceTree = "<group>";
 		};
