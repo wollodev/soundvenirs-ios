@@ -18,4 +18,6 @@
 
 + (SVCollectedSong *)collectedSong:(NSNumber *)uuid andTitle:(NSString *)title andLocation:(CLLocationCoordinate2D)location songUrl:(NSString *)songUrl;
 
+- (NSDictionary *)convertToDictionary;
+
 @end

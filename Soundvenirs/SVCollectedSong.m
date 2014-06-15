@@ -22,4 +22,8 @@
     return collectedSong;
 }
 
+- (NSDictionary *)convertToDictionary {
+    return @{@"uuid": self.uuid, @"title":self.title, @"lat":[NSNumber numberWithDouble:self.location.latitude], @"long":[NSNumber numberWithDouble:self.location.longitude], @"songUrl":self.songUrl};
+}
+
 @end

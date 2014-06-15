@@ -7,13 +7,13 @@
 //
 
 #import "SVAppDelegate.h"
+#import "SVCollectedSong.h"
 
 @implementation SVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    self.collectedSongs = [NSMutableArray array];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -22,6 +22,17 @@
     // Here you set the Accuracy
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     [self.locationManager startUpdatingLocation];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *savedSongs = [defaults objectForKey:@"collectedSongs"];
+    
+    self.collectedSongs = [NSMutableArray array];
+    
+    for (NSDictionary *songDict in savedSongs) {
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([songDict[@"lat"] doubleValue], [songDict[@"long"] doubleValue]);
+        SVCollectedSong *savedCollectedSong = [SVCollectedSong collectedSong:songDict[@"uuid"] andTitle:songDict[@"title"] andLocation:location songUrl:songDict[@"songUrl"]];
+        [self.collectedSongs addObject:savedCollectedSong];
+    }
     
     return YES;
 }
@@ -39,9 +50,14 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
+    NSMutableArray *tmpSongs = [NSMutableArray array];
+    
+    for (SVCollectedSong *tmpSong in self.collectedSongs) {
+        [tmpSongs addObject:tmpSong.convertToDictionary];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:tmpSongs forKey:@"collectedSongs"];}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

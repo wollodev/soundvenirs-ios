@@ -36,7 +36,6 @@
     
     if (self.currentSongLocation) {
         [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:self.currentSongLocation.songUrl andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
-            
         }];
     }
     
