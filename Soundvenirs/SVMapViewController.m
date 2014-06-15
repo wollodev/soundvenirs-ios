@@ -58,7 +58,7 @@
             NSDictionary *locationDict = soundLocationDict[@"location"];
             CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
             
-            SVSoundLocation *newSoundLocation =[SVSoundLocation soundLocation:soundLocationDict[@"uuid"] andTitle:soundLocationDict[@"title"] andLocation:location];
+            SVSoundLocation *newSoundLocation =[SVSoundLocation soundLocation:soundLocationDict[@"title"] andLocation:location];
             
             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
             annotation.coordinate = newSoundLocation.location;

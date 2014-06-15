@@ -12,10 +12,9 @@
 
 @interface SVSoundLocation : NSObject
 
-@property NSNumber *uuid;
 @property NSString *title;
 @property CLLocationCoordinate2D location;
 
-+ (SVSoundLocation *)soundLocation:(NSNumber *)uuid andTitle:(NSString *)title andLocation:(CLLocationCoordinate2D)location;
++ (SVSoundLocation *)soundLocation:(NSString *)title andLocation:(CLLocationCoordinate2D)location;
 
 @end

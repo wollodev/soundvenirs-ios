@@ -19,11 +19,10 @@
 
 @implementation SVSoundLocation
 
-+ (SVSoundLocation *)soundLocation:(NSNumber *)uuid andTitle:(NSString *)title andLocation:(CLLocationCoordinate2D)location {
++ (SVSoundLocation *)soundLocation:(NSString *)title andLocation:(CLLocationCoordinate2D)location {
     
     SVSoundLocation *soundLocation = [[SVSoundLocation alloc] init];
     
-    soundLocation.uuid = uuid;
     soundLocation.title = title;
     soundLocation.location = location;
     
