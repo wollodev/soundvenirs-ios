@@ -10,4 +10,7 @@
 
 @interface SVMenuViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *detailView;
+
+
 @end
