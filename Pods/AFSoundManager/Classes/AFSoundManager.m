@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) int type;
-@property (nonatomic) int status;
 
 @end
 
@@ -26,10 +25,16 @@
         soundManager = [[self alloc]init];
     });
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
     return soundManager;
 }
 
 -(void)startPlayingLocalFileWithName:(NSString *)name andBlock:(progressBlock)block {
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], name];
     NSURL *fileURL = [NSURL fileURLWithPath:filePath];
@@ -38,23 +43,31 @@
     _audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:&error];
     [_audioPlayer play];
     
+    _status = AFSoundManagerStatusPlaying;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusPlaying];
+    
     __block int percentage = 0;
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^{
         
-        if (percentage != 100) {
+        if ((_audioPlayer.duration - _audioPlayer.currentTime) >= 1) {
             
             percentage = (int)((_audioPlayer.currentTime * 100)/_audioPlayer.duration);
             int timeRemaining = _audioPlayer.duration - _audioPlayer.currentTime;
-            
-            block(percentage, _audioPlayer.currentTime, timeRemaining, error, NO);
+
+            if (block) {
+                block(percentage, _audioPlayer.currentTime, timeRemaining, error, NO);
+            }
         } else {
             
             int timeRemaining = _audioPlayer.duration - _audioPlayer.currentTime;
 
-            block(100, _audioPlayer.currentTime, timeRemaining, error, YES);
-            
+            if (block) {
+                block(100, _audioPlayer.currentTime, timeRemaining, error, YES);
+            }
             [_timer invalidate];
+            _status = AFSoundManagerStatusFinished;
+            [_delegate currentPlayingStatusChanged:AFSoundManagerStatusFinished];
         }
     } repeats:YES];
 }
@@ -67,32 +80,52 @@
     _player = [[AVPlayer alloc]initWithURL:streamingURL];
     [_player play];
     
+    _status = AFSoundManagerStatusPlaying;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusPlaying];
+    
     if (!error) {
     
         __block int percentage = 0;
         
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^{
             
-            if (percentage != 100) {
+            if ((CMTimeGetSeconds(_player.currentItem.duration) - CMTimeGetSeconds(_player.currentItem.currentTime)) != 0) {
                 
                 percentage = (int)((CMTimeGetSeconds(_player.currentItem.currentTime) * 100)/CMTimeGetSeconds(_player.currentItem.duration));
                 int timeRemaining = CMTimeGetSeconds(_player.currentItem.duration) - CMTimeGetSeconds(_player.currentItem.currentTime);
-                
-                block(percentage, CMTimeGetSeconds(_player.currentItem.currentTime), timeRemaining, error, NO);
+                                
+                if (block) {
+                    block(percentage, CMTimeGetSeconds(_player.currentItem.currentTime), timeRemaining, error, NO);
+                }
             } else {
                 
                 int timeRemaining = CMTimeGetSeconds(_player.currentItem.duration) - CMTimeGetSeconds(_player.currentItem.currentTime);
-                
-                block(100, CMTimeGetSeconds(_player.currentItem.currentTime), timeRemaining, error, YES);
-                
+
+                if (block) {
+                    block(100, CMTimeGetSeconds(_player.currentItem.currentTime), timeRemaining, error, YES);
+                }
+
                 [_timer invalidate];
+                _status = AFSoundManagerStatusFinished;
+                [_delegate currentPlayingStatusChanged:AFSoundManagerStatusFinished];
             }
         } repeats:YES];
     } else {
-        
-        block(0, 0, 0, error, YES);
+
+        if (block) {
+            block(0, 0, 0, error, YES);
+        }
         [_audioPlayer stop];
     }
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+    if (object == (id)self && [keyPath isEqualToString:@"status"]) {
+        [self currentPlayingStatusChanged:_status];
+        NSLog(@":roto2:");
+    }
+    NSLog(@":roto2:");
     
 }
 
@@ -115,18 +148,24 @@
     [_audioPlayer pause];
     [_player pause];
     [_timer pauseTimer];
+    _status = AFSoundManagerStatusPaused;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusPaused];
 }
 
 -(void)resume {
     [_audioPlayer play];
     [_player play];
     [_timer resumeTimer];
+    _status = AFSoundManagerStatusPlaying;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusPlaying];
 }
 
 -(void)stop {
     [_audioPlayer stop];
     _player = nil;
     [_timer pauseTimer];
+    _status = AFSoundManagerStatusStopped;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusStopped];
 }
 
 -(void)restart {
@@ -134,6 +173,8 @@
     
     int32_t timeScale = _player.currentItem.asset.duration.timescale;
     [_player seekToTime:CMTimeMake(0.000000, timeScale)];
+    _status = AFSoundManagerStatusRestarted;
+    [_delegate currentPlayingStatusChanged:AFSoundManagerStatusRestarted];
 }
 
 -(void)moveToSecond:(int)second {
@@ -197,6 +238,20 @@
 
 -(NSInteger)timeRecorded {
     return [_recorder currentTime];
+}
+
+-(void)currentPlayingStatusChanged:(AFSoundManagerStatus)status {
+    status = (AFSoundManagerStatus)_status;
+    NSLog(@"wut");
+}
+
+-(BOOL)status:(AFSoundManagerStatus)status {
+    
+    if (status == _status) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 -(BOOL)areHeadphonesConnected {

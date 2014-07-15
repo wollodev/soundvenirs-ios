@@ -89,10 +89,49 @@ In order to change the volume, call ```-changeVolumeToValue:``` by passing a dec
 
 	[[AFSoundManager sharedManager]changeVolumeToValue:0.750000]; //This will put the volume at 75%
 
-###Playing information
-When you start a new playing the blocks will retreive you some information about the playing every single percent. The info given will be the percentage played, the elapsed time and the time remaining. It will also retrieve a NSError so you can check if there's any error playing the audio.
+###Playing status
 
-If you want to get this information even if the playing is paused, ```-retrieveInfoForCurrentPlaying``` will give you a NSDictionary with all the information.
+In order to get noticed of the playing status changes, you need to implement the *AFSoundManagerDelegate* by adding it to your class, just like other delegates.
+
+Then, just implement the ```currentPlayingStatusChanged:``` method in the class you want to get notified about the status changes in. 
+
+	-(void)currentPlayingStatusChanged:(AFSoundManagerStatus)status {
+	
+    	switch (status) {
+    	
+        	case AFSoundManagerStatusFinished:
+            	//Playing got finished
+            	break;
+        
+        	case AFSoundManagerStatusPaused:
+            	//Playing was paused
+          	 	break;
+            
+        	case AFSoundManagerStatusPlaying:
+            	//Playing got started or resumed
+            	break;
+        
+        	case AFSoundManagerStatusRestarted:
+            	//Playing got restarted
+            	break;
+            
+        	case AFSoundManagerStatusStopped:
+            	//Playing got stopped
+            	break;
+    	}
+	}
+	
+Handle the change in each case.
+
+###Background playing
+
+If you want to enable background playing, make sure you have Background Modes enabled on your project, under the Capabilities section:
+
+![alt text](https://raw.github.com/AlvaroFranco/AFSoundManager/master/background.png "")
+
+Also, add this information to your info.plist file:
+
+![alt text](https://raw.github.com/AlvaroFranco/AFSoundManager/master/plist-data.png "")
 
 ###Output manage
 AFSoundManager also lets you choose which device do you want to use to play the audio. I mean, even if you have your headphones plugged in, you can force the audio to play on the built-in speakers or play it through the headphones.

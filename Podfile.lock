@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AFSoundManager (1.2)
+  - AFSoundManager (1.2.3)
   - MBProgressHUD (0.8)
 
 DEPENDENCIES:
@@ -30,7 +30,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  AFSoundManager: 8c30d048c600945169f533d90e27ecef4e117926
+  AFSoundManager: eb3b8da8155c240e3c0503278d648798b58ca5ed
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
 
 COCOAPODS: 0.33.1
