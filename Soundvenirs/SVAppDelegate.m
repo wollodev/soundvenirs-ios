@@ -9,12 +9,16 @@
 #import "SVAppDelegate.h"
 #import "SVCollectedSong.h"
 
+@interface SVAppDelegate ()
+
+- (void)openMenu;
+
+@end
+
 @implementation SVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     //Here you set the Distance Filter that you need
@@ -34,7 +38,27 @@
         [self.collectedSongs addObject:savedCollectedSong];
     }
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SplashScreen"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = viewController;
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    
+    [self.window makeKeyAndVisible];
+    
+    [self performSelector:@selector(openMenu) withObject:nil afterDelay:1.5];
+    
     return YES;
+}
+
+- (void)openMenu {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+
+    self.window.rootViewController = viewController;
+    
+//    [self.window makeKeyAndVisible];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {

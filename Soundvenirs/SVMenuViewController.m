@@ -14,7 +14,6 @@
 @property UIViewController  *currentDetailViewController;
 @property (weak, nonatomic) IBOutlet UIView *controlContainer;
 
-
 - (IBAction)openMenu:(id)sender;
 
 @end

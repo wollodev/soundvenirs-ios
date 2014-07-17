@@ -7,7 +7,7 @@
         <!--Menu View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="SVMenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="SVMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -223,6 +223,36 @@
             </objects>
             <point key="canvasLocation" x="675" y="844"/>
         </scene>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="jvJ-x6-9ag">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Apm-AU-EW8" customClass="SVSplashScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uq1-YN-9Jj"/>
+                        <viewControllerLayoutGuide type="bottom" id="KPo-iA-2Se"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T0w-Ff-cdf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen_5.png" translatesAutoresizingMaskIntoConstraints="NO" id="5vC-BG-Oo5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5vC-BG-Oo5" firstAttribute="leading" secondItem="T0w-Ff-cdf" secondAttribute="leading" id="1e0-ii-LLz"/>
+                            <constraint firstItem="5vC-BG-Oo5" firstAttribute="top" secondItem="T0w-Ff-cdf" secondAttribute="top" id="Svh-Nh-PjD"/>
+                            <constraint firstAttribute="bottom" secondItem="5vC-BG-Oo5" secondAttribute="bottom" id="TNJ-KQ-5V7"/>
+                            <constraint firstAttribute="trailing" secondItem="5vC-BG-Oo5" secondAttribute="trailing" id="VfB-93-cAn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdP-8f-NDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="-530"/>
+        </scene>
         <!--Map View Controller-->
         <scene sceneID="BeS-cp-CqT">
             <objects>
@@ -311,6 +341,7 @@
         <image name="scan_button.png" width="150" height="150"/>
         <image name="scan_button_filled.png" width="496" height="496"/>
         <image name="scan_button_s.png" width="321" height="321"/>
+        <image name="splash_screen_5.png" width="320" height="568"/>
         <image name="stop_button.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
