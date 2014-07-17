@@ -207,8 +207,8 @@
 				D6381F5F193CFD0600A24CDB /* SVAppDelegate.m */,
 				D6381F61193CFD0600A24CDB /* Main.storyboard */,
 				D6381F67193CFD0600A24CDB /* Images.xcassets */,
-				D6381F56193CFD0600A24CDB /* Supporting Files */,
 				D6495B271947642E00897DDE /* Model */,
+				D6381F56193CFD0600A24CDB /* Supporting Files */,
 				D64A0372194CB3DC00A79D0C /* PushNoAnimationSegue.h */,
 				D64A0373194CB3DC00A79D0C /* PushNoAnimationSegue.m */,
 			);

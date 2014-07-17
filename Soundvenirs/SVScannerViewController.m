@@ -74,17 +74,16 @@
     
     [self stopScanning];
     
-    // www.soundvenirs.com/api/sounds/:uuid
+    NSString *soundId = [[aScannedValue componentsSeparatedByString:@"/"] lastObject];
     
-    NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", aScannedValue];
+    NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", soundId];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:soundUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *locationDict = responseObject[@"location"];
-        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([responseObject[@"lat"] doubleValue], [responseObject[@"long"] doubleValue]);
         
-        SVCollectedSong *collectedSong = [SVCollectedSong collectedSong:responseObject[@"uuid"] andTitle:responseObject[@"title"] andLocation:location songUrl:responseObject[@"mp3url"]];
+        SVCollectedSong *collectedSong = [SVCollectedSong collectedSong:responseObject[@"id"] andTitle:responseObject[@"title"] andLocation:location songUrl:responseObject[@"mp3url"]];
         
         SVAppDelegate *appDelegate = (SVAppDelegate *)[UIApplication sharedApplication].delegate;
         
@@ -92,7 +91,7 @@
         
         if ([appDelegate.collectedSongs count] > 0) {
             for (SVCollectedSong *tmpSong in appDelegate.collectedSongs) {
-                if ([tmpSong.uuid isEqual:collectedSong.uuid]) {
+                if ([tmpSong.songId isEqual:collectedSong.songId]) {
                     isDuplicated = true;
                     break;
                 }

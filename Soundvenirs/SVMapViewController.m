@@ -38,8 +38,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://www.soundvenirs.com/api/soundLocations" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         for (NSDictionary *soundLocationDict in responseObject) {
-            NSDictionary *locationDict = soundLocationDict[@"location"];
-            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([locationDict[@"lat"] doubleValue], [locationDict[@"long"] doubleValue]);
+            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([responseObject[@"lat"] doubleValue], [responseObject[@"long"] doubleValue]);
             
             SVSoundLocation *newSoundLocation =[SVSoundLocation soundLocation:soundLocationDict[@"title"] andLocation:location];
             

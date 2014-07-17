@@ -74,13 +74,15 @@
 // qr-code scanned
 - (void) scanViewController:(SVLocationScannerViewController *) aCtler didSuccessfullyScan:(NSString *) aScannedValue {
     
-    // TODO: check if qr-code a sound-location (compare location, check UDID)
+    // TODO: check if qr-code a sound-location (compare location, check UUID)
     
     [self stopScanning];
     
     // www.soundvenirs.com/api/sounds/:uuid
+  
+    NSString *soundId = [[aScannedValue componentsSeparatedByString:@"/"] lastObject];
     
-    NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", aScannedValue];
+    NSString *soundUrl = [NSString stringWithFormat:@"http://www.soundvenirs.com/api/sounds/%@", soundId];
 
     CLLocation *ownLocation = ((SVAppDelegate *)[UIApplication sharedApplication].delegate).ownLocation;
     NSDictionary *params = @{@"lat":[NSNumber numberWithDouble:ownLocation.coordinate.latitude], @"long":[NSNumber numberWithDouble:ownLocation.coordinate.longitude]};
@@ -110,7 +112,7 @@
         [self stopScanning];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(error.description);
+        // TODO: popup with error message "Sorry, connection problems."
     }];
     
 }

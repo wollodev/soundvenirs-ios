@@ -11,7 +11,7 @@
 
 @interface SVCollectedSong : NSObject
 
-@property NSString *uuid;
+@property NSString *songId;
 @property NSString *title;
 @property CLLocationCoordinate2D location;
 @property NSString *songUrl;

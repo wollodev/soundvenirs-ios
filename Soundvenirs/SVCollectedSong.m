@@ -14,7 +14,7 @@
     
     SVCollectedSong *collectedSong = [[SVCollectedSong alloc] init];
     
-    collectedSong.uuid = uuid;
+    collectedSong.songId = uuid;
     collectedSong.title = title;
     collectedSong.location = location;
     collectedSong.songUrl = songUrl;
@@ -23,7 +23,7 @@
 }
 
 - (NSDictionary *)convertToDictionary {
-    return @{@"uuid": self.uuid, @"title":self.title, @"lat":[NSNumber numberWithDouble:self.location.latitude], @"long":[NSNumber numberWithDouble:self.location.longitude], @"songUrl":self.songUrl};
+    return @{@"uuid": self.songId, @"title":self.title, @"lat":[NSNumber numberWithDouble:self.location.latitude], @"long":[NSNumber numberWithDouble:self.location.longitude], @"songUrl":self.songUrl};
 }
 
 @end

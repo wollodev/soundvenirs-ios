@@ -42,13 +42,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soundvenirs/SVScannerViewController.m"
-            timestampString = "427049897.888515"
+            timestampString = "427275857.299531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "-captureOutput:didOutputMetadataObjects:fromConnection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Soundvenirs/SVScannerViewController.m"
+            timestampString = "427275857.299531"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-scanViewController:didSuccessfullyScan:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SVScannerViewController scanViewController:didSuccessfullyScan:]"
+                  moduleName = "Soundvenirs"
+                  urlString = "file:///Users/swam/Desktop/Soundvenirs/soundvenirs-ios/Soundvenirs/SVScannerViewController.m"
+                  timestampString = "427275236.876619"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "202">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__66-[SVScannerViewController scanViewController:didSuccessfullyScan:]_block_invoke"
+                  moduleName = "Soundvenirs"
+                  urlString = "file:///Users/swam/Desktop/Soundvenirs/soundvenirs-ios/Soundvenirs/SVScannerViewController.m"
+                  timestampString = "427275236.876832"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "62">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
