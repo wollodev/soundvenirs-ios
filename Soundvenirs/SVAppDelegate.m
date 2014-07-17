@@ -9,6 +9,8 @@
 #import "SVAppDelegate.h"
 #import "SVCollectedSong.h"
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface SVAppDelegate ()
 
 - (void)openMenu;
@@ -38,12 +40,14 @@
         [self.collectedSongs addObject:savedCollectedSong];
     }
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"SplashScreen"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = viewController;
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+    
+    if (IS_IPHONE_5) {
+        self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"splash_screen_5.png"]];
+    } else {
+        self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"splash_screen_4.png"]];
+    }
     
     [self.window makeKeyAndVisible];
     
@@ -53,6 +57,8 @@
 }
 
 - (void)openMenu {
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_1.jpg"]];
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *viewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"Menu"];
 
@@ -81,7 +87,10 @@
     }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:tmpSongs forKey:@"collectedSongs"];}
+    [defaults setValue:tmpSongs forKey:@"collectedSongs"];
+
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_2.jpg"]];
+}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
