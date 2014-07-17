@@ -13,6 +13,7 @@
 #import "SVAppDelegate.h"
 #import "SVPlayerViewController.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "SVMenuViewController.h"
 
 @interface SVScannerViewController ()
 
@@ -106,7 +107,7 @@
         
         self.loadedSong = collectedSong;
         
-        [self performSegueWithIdentifier:@"PushToPlayer" sender:self];
+        [(SVMenuViewController *)self.parentViewController removeCurrentDetailViewController];
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

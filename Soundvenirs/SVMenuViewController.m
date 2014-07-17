@@ -17,11 +17,6 @@
 
 - (IBAction)openMenu:(id)sender;
 
-- (IBAction)openMap:(id)sender;
-- (IBAction)openScanner:(id)sender;
-- (IBAction)openPlayer:(id)sender;
-- (IBAction)openLocationScanner:(id)sender;
-
 @end
 
 @implementation SVMenuViewController
@@ -39,7 +34,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)presentDetailController:(UIViewController*)detailVC{
+- (void)presentDetailController:(UIViewController*)detailVC {
     
     if(self.currentDetailViewController){
         [self removeCurrentDetailViewController];
@@ -87,19 +82,5 @@
     [self removeCurrentDetailViewController];
 }
 
-- (IBAction)openMap:(id)sender {
-    [self openViewController:@"Map"];
-}
 
-- (IBAction)openScanner:(id)sender {
-    [self openViewController:@"Scanner"];
-}
-
-- (IBAction)openPlayer:(id)sender {
-    [self openViewController:@"Player"];
-}
-
-- (IBAction)openLocationScanner:(id)sender {
-    [self openViewController:@"LocationScanner"];
-}
 @end

@@ -35,7 +35,7 @@
 		D64A036D194C81C900A79D0C /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D64A036C194C81C900A79D0C /* back_button@2x.png */; };
 		D64A036F194C8CD500A79D0C /* map_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D64A036E194C8CD500A79D0C /* map_button@2x.png */; };
 		D64A0371194C98BE00A79D0C /* scan_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D64A0370194C98BE00A79D0C /* scan_button@2x.png */; };
-		D64A0374194CB3DC00A79D0C /* PushNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D64A0373194CB3DC00A79D0C /* PushNoAnimationSegue.m */; };
+		D64A0374194CB3DC00A79D0C /* SVCustomOpenSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D64A0373194CB3DC00A79D0C /* SVCustomOpenSegue.m */; };
 		D64A0377194CB86E00A79D0C /* pin_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D64A0375194CB86E00A79D0C /* pin_button@2x.png */; };
 		D64A0378194CB86E00A79D0C /* player_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D64A0376194CB86E00A79D0C /* player_button@2x.png */; };
 		D64A037E194CBF4500A79D0C /* SVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64A037D194CBF4500A79D0C /* SVPlayerViewController.m */; };
@@ -98,8 +98,8 @@
 		D64A036C194C81C900A79D0C /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
 		D64A036E194C8CD500A79D0C /* map_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_button@2x.png"; sourceTree = "<group>"; };
 		D64A0370194C98BE00A79D0C /* scan_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_button@2x.png"; sourceTree = "<group>"; };
-		D64A0372194CB3DC00A79D0C /* PushNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoAnimationSegue.h; sourceTree = "<group>"; };
-		D64A0373194CB3DC00A79D0C /* PushNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoAnimationSegue.m; sourceTree = "<group>"; };
+		D64A0372194CB3DC00A79D0C /* SVCustomOpenSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVCustomOpenSegue.h; sourceTree = "<group>"; };
+		D64A0373194CB3DC00A79D0C /* SVCustomOpenSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVCustomOpenSegue.m; sourceTree = "<group>"; };
 		D64A0375194CB86E00A79D0C /* pin_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin_button@2x.png"; sourceTree = "<group>"; };
 		D64A0376194CB86E00A79D0C /* player_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player_button@2x.png"; sourceTree = "<group>"; };
 		D64A037C194CBF4500A79D0C /* SVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPlayerViewController.h; sourceTree = "<group>"; };
@@ -209,8 +209,8 @@
 				D6381F67193CFD0600A24CDB /* Images.xcassets */,
 				D6495B271947642E00897DDE /* Model */,
 				D6381F56193CFD0600A24CDB /* Supporting Files */,
-				D64A0372194CB3DC00A79D0C /* PushNoAnimationSegue.h */,
-				D64A0373194CB3DC00A79D0C /* PushNoAnimationSegue.m */,
+				D64A0372194CB3DC00A79D0C /* SVCustomOpenSegue.h */,
+				D64A0373194CB3DC00A79D0C /* SVCustomOpenSegue.m */,
 			);
 			path = Soundvenirs;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 				D63A9088194A47D300B6FEBE /* SVScannerViewController.m in Sources */,
 				D6381F60193CFD0600A24CDB /* SVAppDelegate.m in Sources */,
 				D64A037E194CBF4500A79D0C /* SVPlayerViewController.m in Sources */,
-				D64A0374194CB3DC00A79D0C /* PushNoAnimationSegue.m in Sources */,
+				D64A0374194CB3DC00A79D0C /* SVCustomOpenSegue.m in Sources */,
 				D6114CD7194E271E006DAC73 /* SVLocationScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

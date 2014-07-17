@@ -3,7 +3,7 @@
 /*
  Move to the next screen without an animation.
  */
-@interface PushNoAnimationSegue : UIStoryboardSegue
+@interface SVCustomOpenSegue : UIStoryboardSegue
 
 @end
 

@@ -12,5 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *detailView;
 
+- (void)presentDetailController:(UIViewController*)detailVC;
+- (void)removeCurrentDetailViewController;
+
 
 @end
