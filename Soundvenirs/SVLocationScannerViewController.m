@@ -40,8 +40,6 @@
 {
     [super viewDidAppear:animated];
     
-    self.delegate = self;
-    
     if(![self isCameraAvailable]) {
         [self setupNoCameraView];
     } else {
@@ -238,8 +236,8 @@
         double focus_x = aPoint.x/screenWidth;
         double focus_y = aPoint.y/screenHeight;
         if([device lockForConfiguration:nil]) {
-            if([self.delegate respondsToSelector:@selector(scanViewController:didTabToFocusOnPoint:)]) {
-                [self.delegate scanViewController:self didTabToFocusOnPoint:aPoint];
+            if([self respondsToSelector:@selector(scanViewController:didTabToFocusOnPoint:)]) {
+                [self scanViewController:self didTabToFocusOnPoint:aPoint];
             }
             [device setFocusPointOfInterest:CGPointMake(focus_x,focus_y)];
             [device setFocusMode:AVCaptureFocusModeAutoFocus];
@@ -254,14 +252,18 @@
 #pragma mark -
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 
+- (void) scanViewController:(SVLocationScannerViewController *) aCtler didTabToFocusOnPoint:(CGPoint) aPoint {
+    
+}
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects
        fromConnection:(AVCaptureConnection *)connection
 {
     for(AVMetadataObject *current in metadataObjects) {
         if([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]) {
-            if([self.delegate respondsToSelector:@selector(scanViewController:didSuccessfullyScan:)]) {
+            if([self respondsToSelector:@selector(scanViewController:didSuccessfullyScan:)]) {
                 NSString *scannedValue = [((AVMetadataMachineReadableCodeObject *) current) stringValue];
-                [self.delegate scanViewController:self didSuccessfullyScan:scannedValue];
+                [self scanViewController:self didSuccessfullyScan:scannedValue];
             }
         }
     }

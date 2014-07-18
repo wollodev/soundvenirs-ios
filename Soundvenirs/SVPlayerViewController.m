@@ -9,6 +9,7 @@
 #import "SVPlayerViewController.h"
 #import "SVAppDelegate.h"
 #import <AFSoundManager/AFSoundManager.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface SVPlayerViewController ()
 
@@ -38,7 +39,6 @@
         [[AFSoundManager sharedManager] startStreamingRemoteAudioFromURL:self.currentSongLocation.songUrl andBlock:^(int percentage, CGFloat elapsedTime, CGFloat timeRemaining, NSError *error, BOOL finished) {
         }];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,6 +66,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
  
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:11];
+    
+    UIView *songLabelContainer = [cell viewWithTag:23];
+    
+    songLabelContainer.layer.cornerRadius = 5.0;
+    songLabelContainer.layer.masksToBounds = YES;
     
     SVCollectedSong *collectedSong = [self.collectedSongs objectAtIndex:indexPath.row];
     

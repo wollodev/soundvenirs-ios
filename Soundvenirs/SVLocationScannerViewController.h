@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@protocol SVScannerViewControllerDelegate;
-
-@interface SVLocationScannerViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate, SVScannerViewControllerDelegate, UIAlertViewDelegate>
-
-@property (nonatomic, weak) id<SVScannerViewControllerDelegate> delegate;
+@interface SVLocationScannerViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate, UIAlertViewDelegate>
 
 @property (assign, nonatomic) BOOL touchToFocusEnabled;
 
@@ -21,12 +17,6 @@
 - (void) startScanning;
 - (void) stopScanning;
 - (void) setTourch:(BOOL) aStatus;
-
-@end
-
-@protocol SVScannerViewControllerDelegate <NSObject>
-
-@optional
 
 - (void) scanViewController:(SVLocationScannerViewController *) aCtler didTabToFocusOnPoint:(CGPoint) aPoint;
 - (void) scanViewController:(SVLocationScannerViewController *) aCtler didSuccessfullyScan:(NSString *) aScannedValue;

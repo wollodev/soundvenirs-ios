@@ -15,6 +15,7 @@
 		D620FA2819784CCC007AAE83 /* SVSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D620FA2719784CCC007AAE83 /* SVSplashScreenViewController.m */; };
 		D620FA2B19785ECF007AAE83 /* background_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D620FA2919785ECF007AAE83 /* background_1.jpg */; };
 		D620FA2C19785ECF007AAE83 /* background_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D620FA2A19785ECF007AAE83 /* background_2.jpg */; };
+		D620FA2E19798B38007AAE83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D620FA2D19798B38007AAE83 /* QuartzCore.framework */; };
 		D6381F50193CFD0600A24CDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F4F193CFD0600A24CDB /* Foundation.framework */; };
 		D6381F52193CFD0600A24CDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F51193CFD0600A24CDB /* CoreGraphics.framework */; };
 		D6381F54193CFD0600A24CDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6381F53193CFD0600A24CDB /* UIKit.framework */; };
@@ -75,6 +76,7 @@
 		D620FA2719784CCC007AAE83 /* SVSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSplashScreenViewController.m; sourceTree = "<group>"; };
 		D620FA2919785ECF007AAE83 /* background_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_1.jpg; sourceTree = "<group>"; };
 		D620FA2A19785ECF007AAE83 /* background_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_2.jpg; sourceTree = "<group>"; };
+		D620FA2D19798B38007AAE83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D6381F4C193CFD0600A24CDB /* Soundvenirs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soundvenirs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6381F4F193CFD0600A24CDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6381F51193CFD0600A24CDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D620FA2E19798B38007AAE83 /* QuartzCore.framework in Frameworks */,
 				D63A908A194A480B00B6FEBE /* AVFoundation.framework in Frameworks */,
 				D6495B2019475CD800897DDE /* CoreLocation.framework in Frameworks */,
 				D6495B1E19475CD300897DDE /* MapKit.framework in Frameworks */,
@@ -201,6 +204,7 @@
 		D6381F4E193CFD0600A24CDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D620FA2D19798B38007AAE83 /* QuartzCore.framework */,
 				D63A9089194A480B00B6FEBE /* AVFoundation.framework */,
 				D6495B1F19475CD800897DDE /* CoreLocation.framework */,
 				D6495B1D19475CD300897DDE /* MapKit.framework */,
